@@ -1,13 +1,31 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.5.33516.290
-MinimumVisualStudioVersion = 10.0.40219.1
-Global
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {C4D7B316-A242-4694-9A05-6649DEF7B99C}
-	EndGlobalSection
-EndGlobal
+#include <iostream>
+#include <string>
+
+using namespace std;
+//функция, которая считает количество буквы a в строке s
+int count (string s, char a){
+    int k=0;
+    for (int i=0; i<=s.length();i++){
+        if (s[i]==a) k++;   
+    }
+    return k;
+}
+
+int main()
+{   
+    setlocale(LC_ALL, "Russian");
+    string text;    
+    cout<<"Введите строку" << endl;     //считываем строку
+    getline(cin, text);     //
+    
+    cout << "Всего + в строке: " << count(text, '+') << endl;
+    cout << "Всего - в строке: " << count(text, '-') << endl;
+    int m=0,p=0;    
+    for (int i=0; i<=text.length()-1;i++){  //перебор пар символов в строке на поиск +0 или -0
+        if (text[i]=='+' && text[i+1]=='0') p++;
+        if (text[i]=='-' && text[i+1]=='0') m++;
+    }
+    cout << "Всего +0 в строке: " << p << endl;
+    cout << "Всего -0 в строке: " << m << endl;
+    return 0;
+}
